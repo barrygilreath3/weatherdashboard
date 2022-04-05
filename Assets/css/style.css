@@ -1,0 +1,82 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 24px;
+    margin: 40px 0px 0px 0px;;
+}
+
+/* Header */
+header {
+    height: 80px;
+    background-color: rgb(74, 74, 208);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+/* Main */
+main {
+    margin: 30px 0px 0px 0px;
+}
+
+.card {
+    padding:10px;
+    border:none;
+}
+
+/* Search Box */
+.searchsection {
+    width: 150px;
+}
+
+#userCity {
+    width: 150px;
+}
+
+#submit {
+    background-color: rgb(74, 74, 208);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    margin: 10px 0px;
+    cursor:pointer;
+    display: block;
+    width:150px;
+}
+
+#submit:hover {
+    background-color: rgb(42, 42, 115);
+}
+
+#citycard {
+    border: 1px grey solid;
+    height: 250px;
+}
+
+/* Five Day Forecast */
+#fiveDayForecast {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.fiveDayBox {
+    background-color:rgb(35, 35, 41);
+    color: white;
+    max-width: 150px;
+    min-width: 150px;
+    max-height: 250px;
+    min-height: 250px;
+    margin: 15px;
+    display: block;
+    padding: 15px;
+}

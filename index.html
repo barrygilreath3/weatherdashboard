@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./Assets/css/reset.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./Assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <main class="container d-flex col-12">
+        <aside class="col-2">
+            <!-- Search Area -->
+            <div class="card" id="searchcard">
+                <h2>Search for a City:</h2>
+                <br>
+                <form>
+                    <input id="userCity" type="text" class="form-input" placeholder="Atlanta" onfocus="this.placeholder=''"/>
+                    <button type="submit" class="btn" id="submit">Search</button>
+                </form>
+            </div>
+
+            <!-- City Buttons/History -->
+            <div class="card" id="historycard">
+                <!-- May need to add data-* here -->
+                <button type="submit" class="btn cityBtn">City</button>
+            </div>
+        </aside>
+
+        <section class="card col-10">
+            <!-- Featured City Card -->
+            <div class="card" id="cityCard">
+                <h2>New York City<span id=""></span> <span id=""></span></h2>
+                <p data-temperature></p>
+                <p data-wind></p>
+                <p data-humidity></p>
+                <p data-uvindex></p>
+            </div>
+
+            <!-- 5 Day Forecast -->
+            <h2>5-Day Forecast:</h2>
+            <div class="card" id="fiveDayForecast">
+                <div class= "fiveDayBox">
+                    <h3 id="date">Atlanta</h3>
+                    <p data-icon>Cheese</p>
+                    <p data-temperature></p>
+                    <p data-wind></p>
+                    <p data-humidity></p>
+                </div>
+
+            </div>
+        </section>
+        
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="./Assets/js/script.js"></script>
+</body>
+</html>
