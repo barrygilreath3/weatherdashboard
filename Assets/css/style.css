@@ -57,12 +57,16 @@ main {
     background-color: rgb(42, 42, 115);
 }
 
-#citycard {
+#cityCard {
     border: 1px grey solid;
     height: 250px;
+    display:none
 }
 
 /* Five Day Forecast */
+.fiveDay {
+    display: none;
+}
 #fiveDayForecast {
     display: flex;
     justify-content: space-between;
@@ -70,13 +74,13 @@ main {
 }
 
 .fiveDayBox {
-    background-color:rgb(35, 35, 41);
+    background-color:rgb(34, 40, 46);
     color: white;
     max-width: 150px;
     min-width: 150px;
     max-height: 250px;
     min-height: 250px;
     margin: 15px;
-    display: block;
+    display: grid;
     padding: 15px;
 }

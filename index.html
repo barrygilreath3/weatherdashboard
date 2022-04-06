@@ -22,7 +22,7 @@
     </header>
 
     <main class="container d-flex col-12">
-        <aside class="col-2">
+        <aside class="col-3">
             <!-- Search Area -->
             <div class="card" id="searchcard">
                 <h2>Search for a City:</h2>
@@ -43,24 +43,24 @@
         <section class="card col-10">
             <!-- Featured City Card -->
             <div class="card" id="cityCard">
-                <h2>New York City<span id=""></span> <span id=""></span></h2>
-                <p data-temperature></p>
-                <p data-wind></p>
-                <p data-humidity></p>
-                <p data-uvindex></p>
+                <h2 id="city-search-term"> <span id="date"></span></h2>
+                <p>Temp: <span id="city-temp"></span>&#176;F</p>
+                <p>Wind: <span id="city-wind"></span> MPH</p>
+                <p>Humidity: <span id="city-humidity"></span>%</p>
+                <p>UV Index: <span id="uvindex"></span></p>
             </div>
 
             <!-- 5 Day Forecast -->
-            <h2>5-Day Forecast:</h2>
-            <div class="card" id="fiveDayForecast">
-                <div class= "fiveDayBox">
-                    <h3 id="date">Atlanta</h3>
-                    <p data-icon>Cheese</p>
-                    <p data-temperature></p>
-                    <p data-wind></p>
-                    <p data-humidity></p>
+            <div class="fiveDay">
+                <h2 id="5daytitle">5-Day Forecast:</h2>
+                <div class="card" id="fiveDayForecast">
+                    <div class= "fiveDayBox">
+                        <h3 id="date"></h3>
+                        <p>Temp: <span></span>&#176;F</p>
+                        <p>Wind: <span></span>MPH</p>
+                        <p>Humidity: <span></span>%</p>
+                    </div>
                 </div>
-
             </div>
         </section>
         
