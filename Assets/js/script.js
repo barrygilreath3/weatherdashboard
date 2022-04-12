@@ -9,6 +9,9 @@ var cityIcon = document.querySelector('#cityIcon');
 var cityTemp = document.querySelector('#city-temp');
 var cityWind = document.querySelector('#city-wind');
 var cityHumidity = document.querySelector('#city-humidity');
+var historyCard = document.querySelector('#historycard')
+var cityStorage = localStorage.getItem("#userCity");
+var cityBtn = document.querySelector('.cityBtn')
 
 var forecastDate = document.querySelector('.forecastDate');
 var forecastTemp = document.querySelector('.forecastTemp');
@@ -18,13 +21,14 @@ var forecastHumidity = document.querySelector('.forecastHumidity');
 // var UVIndex = document.querySelector('#uvindex');
 // var date = document.querySelector ('')
 
-
 // Submit User City
 var formSubmitHandler = function(event) {
   event.preventDefault();
 
   var city = userCityEl.value.trim();
-  console.log(city);
+
+  cityBtn.textContent = city;
+  localStorage.setItem("userCity", userCityEl.value);
 
   getCity(city);
 
@@ -62,6 +66,7 @@ var displayCity = function (data) {
 
   cityContainerEl.style.display = "block";
   fiveDay.style.display = "block";
+  historyCard.style.display = "block";
 
     fetch ("https://api.openweathermap.org/data/2.5/onecall?lat="+data.coord.lat+"&lon="+data.coord.lon+"&appid="+APIKey+"&units=imperial").then(function(response) {
       return response.json()
@@ -104,6 +109,8 @@ function writeDates (results) {
 
 }
 
+var tomorrowIcon=document.getElementById('tomorrowIcon');
+
 function writefiveDay (results) {
 
   forecastDate.textContent = moment.unix(results.daily[1].dt).format("MM/DD/YYYY");
@@ -111,11 +118,6 @@ function writefiveDay (results) {
   forecastWind.textContent = results.daily[1].wind_speed;
   forecastHumidity.textContent = results.daily[1].humidity;
 
-  // var tomorrowIcon=document.getElementById('tomorrowIcon');
-  // tomorrowIcon.setAttribute('src', 'https://openweathermap.org/img/w/'+data.weather[0].icon +'.png')
-  // var tomorrowIcon = document.getElementbyId('tomorrowIcon');
-  // tomorrowIcon.textContent = results.daily[0].weather[0].icon;
-
-  // tomorrowIconUrl.setAttribute('src', 'https://openweathermap.org/img/w'+results.daily[0].weather[0].icon)
+  tomorrowIcon.setAttribute('src', "https://openweathermap.org/img/wn/" + results.daily[1].weather[0].icon +".png");
 
 }

@@ -35,7 +35,7 @@ main {
 
 /* Search Box */
 .searchsection {
-    width: 150px;
+    width: auto;
 }
 
 #userCity {
@@ -50,7 +50,7 @@ main {
     margin: 10px 0px;
     cursor:pointer;
     display: block;
-    width:150px;
+    width:auto;
 }
 
 #submit:hover {
@@ -61,6 +61,16 @@ main {
     border: 1px grey solid;
     height: auto;
     display:none
+}
+
+#historycard {
+    display: none;
+}
+
+.cityBtn {
+    width: auto;
+    border: 1px solid darkgrey;
+
 }
 
 /* Five Day Forecast */
