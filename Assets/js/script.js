@@ -17,6 +17,7 @@ var forecastDate = document.querySelector('.forecastDate');
 var forecastTemp = document.querySelector('.forecastTemp');
 var forecastWind = document.querySelector('.forecastWind');
 var forecastHumidity = document.querySelector('.forecastHumidity');
+var cityHistory = JSON.parse(localStorage.getItem("userCity")) || [];
 
 // var UVIndex = document.querySelector('#uvindex');
 // var date = document.querySelector ('')
@@ -27,8 +28,25 @@ var formSubmitHandler = function(event) {
 
   var city = userCityEl.value.trim();
 
-  cityBtn.textContent = city;
-  localStorage.setItem("userCity", userCityEl.value);
+  // cityBtn.textContent = city;
+  cityHistory.push(city)
+
+  var historyCard = document.getElementById('historycard');
+
+  for (var i = 0; i < cityHistory.length; i++) {
+    var cityBtn = document.createElement('button');
+    cityBtn.textContent = cityHistory[i];
+    cityBtn.setAttribute ('class', 'btn cityBtn');
+    cityBtn.setAttribute ('type', 'submit');
+    cityBtn.setAttribute ('value', cityHistory[i]);
+    cityBtn.onclick = function() {
+    historySearch(this.value);
+
+    }
+    historyCard.appendChild(cityBtn);
+  }
+
+  localStorage.setItem("userCity", JSON.stringify(cityHistory));
 
   getCity(city);
 
@@ -86,6 +104,7 @@ var displayCity = function (data) {
       uvBtn.setAttribute('class', 'btn btn-'+btnColor);
       uvBtn.textContent = results.current.uvi;
       var buttonBox = document.getElementById("buttonBox");
+      buttonBox.innerHTML = ""
       buttonBox.appendChild(uvBtn);
 
       writeDates (results);
@@ -112,12 +131,67 @@ function writeDates (results) {
 var tomorrowIcon=document.getElementById('tomorrowIcon');
 
 function writefiveDay (results) {
+  console.log (results.daily);
 
-  forecastDate.textContent = moment.unix(results.daily[1].dt).format("MM/DD/YYYY");
-  forecastTemp.textContent = results.daily[1].temp.max;
-  forecastWind.textContent = results.daily[1].wind_speed;
-  forecastHumidity.textContent = results.daily[1].humidity;
+  var fiveDayForecast = document.getElementById('fiveDayForecast');
 
-  tomorrowIcon.setAttribute('src', "https://openweathermap.org/img/wn/" + results.daily[1].weather[0].icon +".png");
+  for (var i=1; i < 6; i++) {
+    console.log (results.daily[i]);
+
+    var fiveDayCard = document.createElement("div");
+    console.log(fiveDayCard);
+    fiveDayCard.setAttribute('class', 'fiveDayCard');
+
+    var forecastDate = document.createElement('p');
+    forecastDate.textContent = moment.unix(results.daily[i].dt).format("MM/DD/YYYY");
+    
+    var forecastTemp = document.createElement('p');
+    forecastTemp.textContent = "Temp:  "+results.daily[i].temp.max + String.fromCharCode(176);
+
+    var forecastWind = document.createElement('p');
+    forecastWind.textContent = "Wind:  "+ results.daily[i].wind_speed+' mph';
+
+    var forecastHumidity = document.createElement('p');
+    forecastHumidity.textContent = "Humidity:  " + results.daily[i].humidity+'%';
+
+    var tomorrowIcon = document.createElement('img');
+    tomorrowIcon.setAttribute('src', "https://openweathermap.org/img/wn/" + results.daily[i].weather[0].icon +".png");
+
+    forecastDate.appendChild(tomorrowIcon);
+    fiveDayCard.appendChild(forecastDate);
+    fiveDayCard.appendChild(forecastTemp);
+    fiveDayCard.appendChild(forecastWind);
+    fiveDayCard.appendChild(forecastHumidity);
+
+    fiveDayForecast.appendChild(fiveDayCard);
+
+  }
 
 }
+
+
+
+// cityBtn.addEventListener("click", historySearch("boston"));
+
+function historySearch (cityBtn) {
+  console.log(cityBtn);
+   
+  apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityBtn+"&appid="+APIKey+"&units=imperial";
+  
+    fetch(apiUrl)
+      .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+        console.log(data);
+        displayCity(data);
+        return data;
+  
+        });
+      } else {
+        alert('Error: '+ response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to Open Weather Map");
+    });
+  };

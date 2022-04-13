@@ -83,7 +83,7 @@ main {
     flex-direction: row;
 }
 
-.fiveDayBox {
+.fiveDayCard {
     background-color:rgb(34, 40, 46);
     color: white;
     max-width: 150px;
